@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#197FDA"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <TextView
+        android:id="@+id/journal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Journal"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/exercizes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Exercises"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"  />
 </LinearLayout>
