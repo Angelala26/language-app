@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/journalQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="50dp"
+        android:text="Grammar question"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/journalAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="20dp"
+        android:text="Answer"
+        android:textSize="25sp" />
 </LinearLayout>

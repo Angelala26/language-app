@@ -23,10 +23,10 @@ public class OpeningActivity extends AppCompatActivity {
 
         setupSpinner();
 
-        Button goToJournal = (Button) findViewById(R.id.goButton);
-        goToJournal.setOnClickListener(new View.OnClickListener() {
+        Button goToJournalOrExercises = (Button) findViewById(R.id.goButton);
+        goToJournalOrExercises.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), JournalActivity.class);
+                Intent myIntent = new Intent(view.getContext(), JournalExercisesActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
