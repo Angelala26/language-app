@@ -8,4 +8,10 @@
         <item>@string/grammar_conditional</item>
         <item>@string/grammar_future</item>
     </string-array>
+
+    <string-array name="present_tense_question">
+        <item>@string/question_one_present</item>
+        <item>@string/question_two_present</item>
+        <item>@string/question_three_present</item>
+    </string-array>
 </resources>

@@ -23,4 +23,10 @@
 
     <string name="back">Back</string>
 
+    <string name="question_one_present">What do you usually buy at the grocery store?</string>
+
+    <string name="question_two_present">What are you hobbies?</string>
+
+    <string name="question_three_present">Tell me about your usual day?</string>
+
 </resources>
