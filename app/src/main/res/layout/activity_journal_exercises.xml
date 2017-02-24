@@ -5,6 +5,12 @@
     android:background="#197FDA"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/backToOpening"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:padding="15dp"/>
 
     <Button
         android:id="@+id/journal"

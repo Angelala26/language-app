@@ -17,10 +17,20 @@ public class JournalExercisesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_exercises);
 
+        //Set button to go to the journal page
         Button goToJournal = (Button) findViewById(R.id.journal);
         goToJournal.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), JournalActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
+
+        // Set button to go back to opening page
+        Button goBackToOpening = (Button) findViewById(R.id.backToOpening);
+        goBackToOpening.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), OpeningActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
