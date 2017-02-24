@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Language App</string>
+
+    <string name="journal_selection">Journal</string>
+
+    <string name="exercises_selection">Exercises</string>
+
+    <string name="opening_greeting">What would you like to learn today?</string>
+
+    <string name="grammar_present">Present tense</string>
+
+    <string name="grammar_past">Past tense</string>
+
+    <string name="grammar_future">Future tense</string>
+
+    <string name="grammar_conditional">Conditional tense</string>
+
+    <string name="choose_grammar">Select</string>
+
+
+
 </resources>

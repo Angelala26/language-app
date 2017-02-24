@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
 
+
     <TextView
         android:id="@+id/journal"
         android:layout_width="match_parent"
@@ -13,18 +14,23 @@
         android:layout_weight="1"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Journal"
+        android:text="@string/journal_selection"
         android:textColor="#FFFFFF"
-        android:textSize="40dp" />
+        android:textSize="40sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFFFFF"/>
 
     <TextView
-        android:id="@+id/exercizes"
+        android:id="@+id/exercises"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Exercises"
+        android:text="@string/exercises_selection"
         android:textColor="#FFFFFF"
-        android:textSize="40dp"  />
+        android:textSize="40sp"  />
 </LinearLayout>
