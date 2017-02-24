@@ -3,7 +3,7 @@ package com.example.android.languageapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,34 +44,21 @@ public class OpeningActivity extends AppCompatActivity {
         ArrayAdapter grammarSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_gender_options,
                 android.R.layout.simple_spinner_dropdown_item);
 
-
         // Specify dropdown layout style - simple list view with 1 item per line
         grammarSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         //Apply the adapter to the spinner
         grammarChoiceSpinner.setAdapter(grammarSpinnerAdapter);
 
-        // Set the integer mSelected to the constant values
+        // Create the intent to send the position to journal activity
         grammarChoiceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals(getString(R.string.grammar_present))) {
-                        mGrammar = 1;
-                    } else if (selection.equals(getString(R.string.grammar_past))) {
-                        mGrammar = 2;
-                    } else if (selection.equals(getString(R.string.grammar_future))) {
-                        mGrammar = 3;
-                    } else if (selection.equals(getString(R.string.grammar_conditional))) {
-                        mGrammar = 4;
-                    }
-                    else {
-                        mGrammar = 0;
-                    }
-                }
+
                 Intent intent = new Intent(getApplicationContext(), JournalActivity.class);
-                intent.putExtra("data", mGrammar);
+                intent.putExtra("selected", position);
+                Log.d("in spinner selected", "position of spinner:" + position );
+                startActivity(intent);
             }
 
             // Because AdapterView is an abstract class, onNothingSelected must be defined

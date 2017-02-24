@@ -1,5 +1,6 @@
 package com.example.android.languageapp;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,14 +26,24 @@ public class JournalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
+//        nextPresentQuestionButton();
 
-        nextQuestionButton();
+        Intent intent = getIntent();
+        int selected = intent.getIntExtra("selected", 0);
+        Bundle extras = intent.getBundleExtra("selected");
+
+        if (extras != null) {
+            selected = extras.getInt("selected");
+        }
+        if (selected == 1) {
+            nextPresentQuestionButton();
+        }
 
     }
 
     //TODO: this logic is messed up - the question starts blank, not with the first question
     // and the last question won't show up so I added a random one at the end
-    private void nextQuestionButton() {
+    private void nextPresentQuestionButton() {
         // Set button to go to the next question (an arrary)
         // Initialize the journal question label
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
