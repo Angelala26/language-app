@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="#197FDA"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <TextView
-        android:id="@+id/journal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="@string/journal_selection"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#FFFFFF"/>
-
-    <TextView
-        android:id="@+id/exercises"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="@string/exercises_selection"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"  />
 </LinearLayout>
