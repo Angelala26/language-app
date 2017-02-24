@@ -19,7 +19,9 @@
 
     <string name="answer">Answer</string>
 
-    <string name="next">Next</string>
+    <string name="next">Next Question</string>
+
+    <string name="previous_question">Previous Question</string>
 
     <string name="back">Back</string>
 

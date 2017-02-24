@@ -13,5 +13,6 @@
         <item>@string/question_one_present</item>
         <item>@string/question_two_present</item>
         <item>@string/question_three_present</item>
+        <item>@string/answer</item>
     </string-array>
 </resources>
