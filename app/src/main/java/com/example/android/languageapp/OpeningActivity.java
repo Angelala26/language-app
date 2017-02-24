@@ -29,19 +29,38 @@ public class OpeningActivity extends AppCompatActivity {
         setupSpinner();
 
         //Set up the intent and OnClickLIstener for the button to go to journal or exercises
-        Button goToJournalOrExercises = (Button) findViewById(R.id.goButton);
-        goToJournalOrExercises.setOnClickListener(new View.OnClickListener() {
+        final Button chooseGrammarButton = (Button) findViewById(R.id.goButton);
+        final Button journalButton = (Button) findViewById(R.id.journal);
+        final Button exercisesButton = (Button) findViewById(R.id.exercises);
+
+        // make the Go button disappear and the exercises or grammar button appear
+        chooseGrammarButton.setVisibility(View.VISIBLE);
+        journalButton.setVisibility(View.GONE);
+        exercisesButton.setVisibility(View.GONE);
+        chooseGrammarButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), JournalExercisesActivity.class);
+                chooseGrammarButton.setVisibility(View.INVISIBLE);
+                journalButton.setVisibility(View.VISIBLE);
+                exercisesButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //Set button to go to the journal page
+        Button goToJournal = (Button) findViewById(R.id.journal);
+        goToJournal.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), JournalActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
+
     }
 
+    // TODO: fix this setOnItemSelectedListener
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
-        ArrayAdapter grammarSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_gender_options,
+        ArrayAdapter grammarSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_grammar_options,
                 android.R.layout.simple_spinner_dropdown_item);
 
         // Specify dropdown layout style - simple list view with 1 item per line

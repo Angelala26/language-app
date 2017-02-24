@@ -28,6 +28,7 @@ public class JournalActivity extends AppCompatActivity {
 
 //        nextPresentQuestionButton();
 
+        //TODO: fix this so the spinner answer is recorded and the logic follows
         Intent intent = getIntent();
         int selected = intent.getIntExtra("selected", 0);
         Bundle extras = intent.getBundleExtra("selected");

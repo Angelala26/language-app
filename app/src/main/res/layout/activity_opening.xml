@@ -42,4 +42,28 @@
         android:backgroundTint="@color/white"
         android:text="Go"
         android:textColor="@color/black" />
+
+
+    <Button
+        android:id="@+id/journal"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/goButton"
+        android:layout_marginRight="15dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/journal_selection"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp" />
+
+    <Button
+        android:id="@+id/exercises"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/goButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="15dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/exercises_selection"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp" />
 </RelativeLayout>
