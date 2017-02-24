@@ -4,12 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/backToJournalExercises"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="@string/back" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/nextQuestionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="end"
+            android:padding="15dp"
+            android:text="@string/next"
+            android:textAlignment="center" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/journalQuestion"
@@ -19,8 +27,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="50dp"
-        android:textSize="30sp"
-        android:text="How do you feel today?"/>
+        android:text="How do you feel today?"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/journalAnswer"
@@ -35,16 +43,4 @@
         android:scrollbars="vertical"
         android:textSize="25sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="@string/next"
-            android:textAlignment="center" />
-    </LinearLayout>
 </LinearLayout>

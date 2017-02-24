@@ -1,6 +1,5 @@
 package com.example.android.languageapp;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,22 +25,8 @@ public class JournalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
-        // Call logic for the back button
-        goBackButton();
 
-        // Call logic for next question button
         nextQuestionButton();
-    }
-
-    private void goBackButton() {
-        // Set button to go back to opening page
-        Button goBackToJournalExercises = (Button) findViewById(R.id.backToJournalExercises);
-        goBackToJournalExercises.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), JournalExercisesActivity.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
 
     }
 
@@ -53,7 +38,7 @@ public class JournalActivity extends AppCompatActivity {
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
 
         // Connect with the next question button
-        Button nextQuestionButton = (Button) findViewById(R.id.nextButton);
+        Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
 
         // Get the questions array from the resources
         Resources res = getResources();
@@ -64,6 +49,7 @@ public class JournalActivity extends AppCompatActivity {
             public void onClick(View view) {
                 journalQuestionLabel.setText(presentQuestionArray[counter]);
                 if (counter < (presentQuestionArray.length - 1)) {
+                    Log.d("inside if counter", "counter is: " + counter);
                     counter++;
                 } else {
                     journalQuestionLabel.setText("Sorry, no more questions.");
