@@ -1,6 +1,6 @@
 package com.example.android.languageapp;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,26 +20,22 @@ public class JournalActivity extends AppCompatActivity {
     //set label for journal questions
     public TextView journalQuestionLabel;
     public int counter = 0;
+    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
-//        nextPresentQuestionButton();
+        //TODO: Send saved preferences here
+        preferences = getSharedPreferences("Selection", MODE_PRIVATE);
+        int selection = preferences.getInt("grammarOption", -1);
 
-        //TODO: fix this so the spinner answer is recorded and the logic follows
-        Intent intent = getIntent();
-        int selected = intent.getIntExtra("selected", 0);
-        Bundle extras = intent.getBundleExtra("selected");
-
-        if (extras != null) {
-            selected = extras.getInt("selected");
-        }
-        if (selected == 1) {
+        //If the user chose present tense, load the present tense questions
+        if(selection == 1) {
             nextPresentQuestionButton();
         }
-
     }
 
     //TODO: this logic is messed up - the question starts blank, not with the first question

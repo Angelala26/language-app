@@ -1,14 +1,16 @@
 package com.example.android.languageapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class OpeningActivity extends AppCompatActivity {
 
@@ -17,6 +19,8 @@ public class OpeningActivity extends AppCompatActivity {
 
     // Create a variable to store the spinner's choice
     private int mGrammar;
+
+    Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +60,10 @@ public class OpeningActivity extends AppCompatActivity {
 
     }
 
-    // TODO: fix this setOnItemSelectedListener
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
-        ArrayAdapter grammarSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_grammar_options,
+        final ArrayAdapter grammarSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.array_grammar_options,
                 android.R.layout.simple_spinner_dropdown_item);
 
         // Specify dropdown layout style - simple list view with 1 item per line
@@ -69,15 +72,27 @@ public class OpeningActivity extends AppCompatActivity {
         //Apply the adapter to the spinner
         grammarChoiceSpinner.setAdapter(grammarSpinnerAdapter);
 
-        // Create the intent to send the position to journal activity
+        //Create shared preferences to store the spinner selection
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences
+                ("Selection", MODE_PRIVATE);
+
+        editor = preferences.edit();
+
+        // Create the intent to save the position
         grammarChoiceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getApplicationContext(), JournalActivity.class);
-                intent.putExtra("selected", position);
-                Log.d("in spinner selected", "position of spinner:" + position );
-                startActivity(intent);
+                //receive the string of the option and store it
+                int grammarOptionPosition = grammarChoiceSpinner.getSelectedItemPosition();
+                //put the string in the editor
+                editor.putInt("grammarOption", grammarOptionPosition);
+                editor.commit();
+                //make a toast so the user knows if it's not "select"
+                if (grammarOptionPosition != 0) {
+                    Toast.makeText(getApplicationContext(), "Choice saved.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
             // Because AdapterView is an abstract class, onNothingSelected must be defined
