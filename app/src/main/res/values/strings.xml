@@ -25,10 +25,29 @@
 
     <string name="back">Back</string>
 
+    <string name="beginning_question">Hit next question to begin.</string>
+
     <string name="question_one_present">What do you usually buy at the grocery store?</string>
 
     <string name="question_two_present">What are you hobbies?</string>
 
-    <string name="question_three_present">Tell me about your usual day?</string>
+    <string name="question_three_present">Tell me about your usual day.</string>
 
+    <string name="question_one_past">What did you eat yesterday?</string>
+
+    <string name="question_two_past">Tell me about your last vacation.</string>
+
+    <string name="question_three_past">What did you do today?</string>
+
+    <string name="question_one_future">What will you eat for dinner tonight?</string>
+
+    <string name="question_two_future">What will you do on your next vacation?</string>
+
+    <string name="question_three_future">What are you going to do tomorrow?</string>
+
+    <string name="question_one_conditional">Conditional question 1</string>
+
+    <string name="question_two_conditional">Conditional question 2</string>
+
+    <string name="question_three_conditional">Conditional question 3</string>
 </resources>

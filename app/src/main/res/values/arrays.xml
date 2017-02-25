@@ -9,10 +9,31 @@
         <item>@string/grammar_future</item>
     </string-array>
 
-    <string-array name="present_tense_question">
+    <string-array name="present_tense_questions">
         <item>@string/question_one_present</item>
         <item>@string/question_two_present</item>
         <item>@string/question_three_present</item>
+        <item>@string/answer</item>
+    </string-array>
+
+    <string-array name="past_tense_questions">
+        <item>@string/question_one_past</item>
+        <item>@string/question_two_past</item>
+        <item>@string/question_three_past</item>
+        <item>@string/answer</item>
+    </string-array>
+
+    <string-array name="future_tense_questions">
+        <item>@string/question_one_future</item>
+        <item>@string/question_two_future</item>
+        <item>@string/question_three_future</item>
+        <item>@string/answer</item>
+    </string-array>
+
+    <string-array name="conditional_tense_questions">
+        <item>@string/question_one_conditional</item>
+        <item>@string/question_two_conditional</item>
+        <item>@string/question_three_conditional</item>
         <item>@string/answer</item>
     </string-array>
 </resources>
