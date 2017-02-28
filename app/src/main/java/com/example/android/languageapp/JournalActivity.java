@@ -36,26 +36,24 @@ public class JournalActivity extends AppCompatActivity {
         // Initialize the journal question label
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
 
-        //If the user chose present tense, load the present tense questions
+        //Load the first question depending on what the user chose
         if (selection == 1) {
             journalQuestionLabel.setText(getResources().getString(R.string.question_one_present));
-            nextPresentQuestionButton();
         } else if (selection == 2) {
             journalQuestionLabel.setText(getResources().getString(R.string.question_one_past));
-            nextPastQuestionButton();
         } else if (selection == 3) {
             journalQuestionLabel.setText(getResources().getString(R.string.question_one_future));
-            nextFutureQuestionButton();
         } else if (selection == 4) {
             journalQuestionLabel.setText(getResources().getString(R.string.question_one_conditional));
-            nextConditionalQuestionButton();
         } else {
             Toast.makeText(getApplicationContext(), "Please make a grammar selection", Toast.LENGTH_LONG);
         }
+
+        nextQuestionButton();
     }
 
-    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
-    private void nextPresentQuestionButton() {
+    // Make a method to go to the next question depending on which grammar selection the user chose
+    private void nextQuestionButton() {
         // Set button to go to the next question (the arrary)
         // Initialize the journal question label
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
@@ -63,100 +61,52 @@ public class JournalActivity extends AppCompatActivity {
         // Connect with the next question button
         Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
 
+        //Send saved preferences here
+        preferences = getSharedPreferences("Selection", MODE_PRIVATE);
+        final int selection = preferences.getInt("grammarOption", -1);
+
         // Get the questions array from the resources
         Resources res = getResources();
         final String[] presentQuestionArray = res.getStringArray(R.array.present_tense_questions);
-
-        // Set up the onClickListener with the questions and next button
-        nextQuestionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                journalQuestionLabel.setText(presentQuestionArray[counter + 1]);
-                if (counter < (presentQuestionArray.length - 2)) {
-                    Log.d("inside if counter", "counter is: " + counter);
-                    counter++;
-                } else {
-                    journalQuestionLabel.setText("Sorry, no more questions.");
-                }
-            }
-        });
-    }
-
-    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
-    private void nextPastQuestionButton() {
-        // Set button to go to the next question (an arrary)
-        // Initialize the journal question label
-        journalQuestionLabel = (TextView) findViewById(journalQuestion);
-
-        // Connect with the next question button
-        Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
-
-        // Get the questions array from the resources
-        Resources res = getResources();
         final String[] pastQuestionArray = res.getStringArray(R.array.past_tense_questions);
-
-        // Set up the onClickListener with the questions and next button
-        nextQuestionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
-                if (counter < (pastQuestionArray.length - 2)) {
-                    Log.d("inside if counter", "counter is: " + counter);
-                    counter++;
-                } else {
-                    journalQuestionLabel.setText("Sorry, no more questions.");
-                }
-            }
-        });
-    }
-
-    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
-    private void nextFutureQuestionButton() {
-        // Set button to go to the next question (an arrary)
-        // Initialize the journal question label
-        journalQuestionLabel = (TextView) findViewById(journalQuestion);
-
-        // Connect with the next question button
-        Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
-
-        // Get the questions array from the resources
-        Resources res = getResources();
         final String[] futureQuestionArray = res.getStringArray(R.array.future_tense_questions);
-
-        // Set up the onClickListener with the questions and next button
-        nextQuestionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
-                if (counter < (futureQuestionArray.length - 2)) {
-                    Log.d("inside if counter", "counter is: " + counter);
-                    counter++;
-                } else {
-                    journalQuestionLabel.setText("Sorry, no more questions.");
-                }
-            }
-        });
-    }
-
-    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
-    private void nextConditionalQuestionButton() {
-        // Set button to go to the next question (an arrary)
-        // Initialize the journal question label
-        journalQuestionLabel = (TextView) findViewById(journalQuestion);
-
-        // Connect with the next question button
-        Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
-
-        // Get the questions array from the resources
-        Resources res = getResources();
         final String[] conditionalQuestionArray = res.getStringArray(R.array.conditional_tense_questions);
 
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
-                if (counter < (conditionalQuestionArray.length - 2)) {
-                    Log.d("inside if counter", "counter is: " + counter);
-                    counter++;
-                } else {
-                    journalQuestionLabel.setText("Sorry, no more questions.");
+                if (selection == 1) {
+                    journalQuestionLabel.setText(presentQuestionArray[counter + 1]);
+                    if (counter < (presentQuestionArray.length - 2)) {
+                        Log.d("inside if counter", "counter is: " + counter);
+                        counter++;
+                    } else {
+                        journalQuestionLabel.setText("Sorry, no more questions.");
+                    }
+                } else if (selection == 2) {
+                    journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
+                    if (counter < (pastQuestionArray.length - 2)) {
+                        Log.d("inside if counter", "counter is: " + counter);
+                        counter++;
+                    } else {
+                        journalQuestionLabel.setText("Sorry, no more questions.");
+                    }
+                } else if (selection == 3) {
+                    journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
+                    if (counter < (futureQuestionArray.length - 2)) {
+                        Log.d("inside if counter", "counter is: " + counter);
+                        counter++;
+                    } else {
+                        journalQuestionLabel.setText("Sorry, no more questions.");
+                    }
+                } else if (selection == 4) {
+                    journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
+                    if (counter < (conditionalQuestionArray.length - 2)) {
+                        Log.d("inside if counter", "counter is: " + counter);
+                        counter++;
+                    } else {
+                        journalQuestionLabel.setText("Sorry, no more questions.");
+                    }
                 }
             }
         });
