@@ -46,7 +46,7 @@ public class JournalActivity extends AppCompatActivity {
         } else if (selection == 4) {
             journalQuestionLabel.setText(getResources().getString(R.string.question_one_conditional));
         } else {
-            Toast.makeText(getApplicationContext(), "Please make a grammar selection", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "Please make a grammar selection", Toast.LENGTH_LONG).show();
         }
 
         nextQuestionButton();
@@ -111,5 +111,4 @@ public class JournalActivity extends AppCompatActivity {
             }
         });
     }
-
 }
