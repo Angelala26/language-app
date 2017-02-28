@@ -32,7 +32,7 @@ public class OpeningActivity extends AppCompatActivity {
 
         setupSpinner();
 
-        //Set up the intent and OnClickLIstener for the button to go to journal or exercises
+        //Set up the intent and OnClickListener for the button to go to journal or exercises
         final Button chooseGrammarButton = (Button) findViewById(R.id.goButton);
         final Button journalButton = (Button) findViewById(R.id.journal);
         final Button exercisesButton = (Button) findViewById(R.id.exercises);
@@ -50,11 +50,16 @@ public class OpeningActivity extends AppCompatActivity {
         });
 
         //Set button to go to the journal page
-        Button goToJournal = (Button) findViewById(R.id.journal);
-        goToJournal.setOnClickListener(new View.OnClickListener() {
+        journalButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), JournalActivity.class);
-                startActivityForResult(myIntent, 0);
+                if (grammarChoiceSpinner.getSelectedItemPosition() != 0) {
+                    startActivityForResult(myIntent, 0);
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "Please make a grammar selection",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -95,7 +100,7 @@ public class OpeningActivity extends AppCompatActivity {
                 }
             }
 
-            // Because AdapterView is an abstract class, onNothingSelected must be defined
+            // Define onNothingSelected
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 mGrammar = 0;
