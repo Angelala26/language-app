@@ -27,7 +27,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="50dp"
-        android:text="@string/beginning_question"
         android:textSize="30sp" />
 
     <EditText

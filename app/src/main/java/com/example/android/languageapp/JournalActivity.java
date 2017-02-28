@@ -29,28 +29,34 @@ public class JournalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
 
-        //TODO: Send saved preferences here
+        //Send saved preferences here
         preferences = getSharedPreferences("Selection", MODE_PRIVATE);
         int selection = preferences.getInt("grammarOption", -1);
 
+        // Initialize the journal question label
+        journalQuestionLabel = (TextView) findViewById(journalQuestion);
+
         //If the user chose present tense, load the present tense questions
         if (selection == 1) {
+            journalQuestionLabel.setText(getResources().getString(R.string.question_one_present));
             nextPresentQuestionButton();
         } else if (selection == 2) {
+            journalQuestionLabel.setText(getResources().getString(R.string.question_one_past));
             nextPastQuestionButton();
         } else if (selection == 3) {
+            journalQuestionLabel.setText(getResources().getString(R.string.question_one_future));
             nextFutureQuestionButton();
         } else if (selection == 4) {
+            journalQuestionLabel.setText(getResources().getString(R.string.question_one_conditional));
             nextConditionalQuestionButton();
         } else {
             Toast.makeText(getApplicationContext(), "Please make a grammar selection", Toast.LENGTH_LONG);
         }
     }
 
-    //TODO: this logic is messed up - the question starts blank, not with the first question
-    // and the last question won't show up so I added a random one at the end
+    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
     private void nextPresentQuestionButton() {
-        // Set button to go to the next question (an arrary)
+        // Set button to go to the next question (the arrary)
         // Initialize the journal question label
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
 
@@ -64,8 +70,8 @@ public class JournalActivity extends AppCompatActivity {
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                journalQuestionLabel.setText(presentQuestionArray[counter]);
-                if (counter < (presentQuestionArray.length - 1)) {
+                journalQuestionLabel.setText(presentQuestionArray[counter + 1]);
+                if (counter < (presentQuestionArray.length - 2)) {
                     Log.d("inside if counter", "counter is: " + counter);
                     counter++;
                 } else {
@@ -75,8 +81,7 @@ public class JournalActivity extends AppCompatActivity {
         });
     }
 
-    //TODO: this logic is messed up - the question starts blank, not with the first question
-    // and the last question won't show up so I added a random one at the end
+    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
     private void nextPastQuestionButton() {
         // Set button to go to the next question (an arrary)
         // Initialize the journal question label
@@ -92,8 +97,8 @@ public class JournalActivity extends AppCompatActivity {
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                journalQuestionLabel.setText(pastQuestionArray[counter]);
-                if (counter < (pastQuestionArray.length - 1)) {
+                journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
+                if (counter < (pastQuestionArray.length - 2)) {
                     Log.d("inside if counter", "counter is: " + counter);
                     counter++;
                 } else {
@@ -103,8 +108,7 @@ public class JournalActivity extends AppCompatActivity {
         });
     }
 
-    //TODO: this logic is messed up - the question starts blank, not with the first question
-    // and the last question won't show up so I added a random one at the end
+    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
     private void nextFutureQuestionButton() {
         // Set button to go to the next question (an arrary)
         // Initialize the journal question label
@@ -120,8 +124,8 @@ public class JournalActivity extends AppCompatActivity {
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                journalQuestionLabel.setText(futureQuestionArray[counter]);
-                if (counter < (futureQuestionArray.length - 1)) {
+                journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
+                if (counter < (futureQuestionArray.length - 2)) {
                     Log.d("inside if counter", "counter is: " + counter);
                     counter++;
                 } else {
@@ -131,8 +135,7 @@ public class JournalActivity extends AppCompatActivity {
         });
     }
 
-    //TODO: this logic is messed up - the question starts blank, not with the first question
-    // and the last question won't show up so I added a random one at the end
+    //TODO: this logic is messed up - the last question won't show up so I added a random one at the end
     private void nextConditionalQuestionButton() {
         // Set button to go to the next question (an arrary)
         // Initialize the journal question label
@@ -148,8 +151,8 @@ public class JournalActivity extends AppCompatActivity {
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                journalQuestionLabel.setText(conditionalQuestionArray[counter]);
-                if (counter < (conditionalQuestionArray.length - 1)) {
+                journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
+                if (counter < (conditionalQuestionArray.length - 2)) {
                     Log.d("inside if counter", "counter is: " + counter);
                     counter++;
                 } else {
