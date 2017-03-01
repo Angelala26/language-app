@@ -19,9 +19,10 @@ import static com.example.android.languageapp.R.id.journalQuestion;
 public class JournalActivity extends AppCompatActivity {
 
     //set label for journal questions
-    public TextView journalQuestionLabel;
-    public int counter = 0;
+    protected TextView journalQuestionLabel;
+    protected int counter = 0;
     SharedPreferences preferences;
+    protected TextView userInput;
 
 
     @Override
@@ -57,6 +58,9 @@ public class JournalActivity extends AppCompatActivity {
         // Set button to go to the next question (the arrary)
         // Initialize the journal question label
         journalQuestionLabel = (TextView) findViewById(journalQuestion);
+
+        // Initialize the user answers
+        userInput = (TextView) findViewById(R.id.journalAnswer);
 
         // Connect with the next question button
         Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
@@ -108,6 +112,7 @@ public class JournalActivity extends AppCompatActivity {
                         journalQuestionLabel.setText("Sorry, no more questions.");
                     }
                 }
+                String userInputToString = userInput.getText().toString();
             }
         });
     }
