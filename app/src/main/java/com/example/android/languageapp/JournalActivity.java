@@ -76,6 +76,7 @@ public class JournalActivity extends AppCompatActivity {
         final String[] futureQuestionArray = res.getStringArray(R.array.future_tense_questions);
         final String[] conditionalQuestionArray = res.getStringArray(R.array.conditional_tense_questions);
 
+        //TODO: the array is off - had to add a random question at the end that doesn't show up
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -84,32 +85,40 @@ public class JournalActivity extends AppCompatActivity {
                     if (counter < (presentQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         counter++;
+                        userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 2) {
                     journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
                     if (counter < (pastQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         counter++;
+                        userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 3) {
                     journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
                     if (counter < (futureQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         counter++;
+                        userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 4) {
                     journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
                     if (counter < (conditionalQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         counter++;
+                        userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        userInput.setVisibility(View.INVISIBLE);
                     }
                 }
                 String userInputToString = userInput.getText().toString();
