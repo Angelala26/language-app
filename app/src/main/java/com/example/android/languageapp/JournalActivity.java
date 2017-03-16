@@ -19,10 +19,10 @@ import static com.example.android.languageapp.R.id.journalQuestion;
 public class JournalActivity extends AppCompatActivity {
 
     //set label for journal questions
-    protected TextView journalQuestionLabel;
-    protected int counter = 0;
-    SharedPreferences preferences;
-    protected TextView userInput;
+    private TextView journalQuestionLabel;
+    private int counter = 0;
+    protected SharedPreferences preferences;
+    private TextView userInput;
 
 
     @Override
