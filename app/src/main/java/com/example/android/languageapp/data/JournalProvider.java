@@ -71,7 +71,7 @@ public class JournalProvider extends ContentProvider {
                         selection, selectionArgs, null, null, sortOrder);
                 break;
             case ANSWERS_ID:
-                // For the PET_ID code, extract out the ID from the URI.
+                // For the ANSWERS_ID code, extract out the ID from the URI.
                 // For an example URI such as "content://com.example.android.pets/pets/3",
                 // the selection will be "_id=?" and the selection argument will be a
                 // String array containing the actual ID of 3 in this case.
@@ -132,7 +132,7 @@ public class JournalProvider extends ContentProvider {
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new answer with the given values
         long id = database.insert(JournalContract.JournalEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -174,7 +174,7 @@ public class JournalProvider extends ContentProvider {
      */
     private int updateAnswer(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        // Update the selected pets in the pets database table with the given ContentValues
+        // Update the selected answers in the answers database table with the given ContentValues
         // Check that the name is not null
         if (values.containsKey(JournalContract.JournalEntry.COLUMN_USER_ANSWER)) {
             String answer = values.getAsString(JournalContract.JournalEntry.COLUMN_USER_ANSWER);
