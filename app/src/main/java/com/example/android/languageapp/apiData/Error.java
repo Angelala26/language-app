@@ -10,7 +10,7 @@ public class Error {
     int offset;
     int length;
     String bad;
-    String better;
+    String[] better;
 
     public String getId() {
         return id;
@@ -28,7 +28,7 @@ public class Error {
         return bad;
     }
 
-    public String getBetter() {
+    public String[] getBetter() {
         return better;
     }
 

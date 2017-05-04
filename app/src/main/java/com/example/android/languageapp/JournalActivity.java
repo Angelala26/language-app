@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.languageapp.apiData.RequestController;
 import com.example.android.languageapp.data.JournalContract;
 
 import static com.example.android.languageapp.R.id.journalQuestion;
@@ -29,11 +30,16 @@ public class JournalActivity extends AppCompatActivity {
     protected SharedPreferences preferences;
     private TextView userInput;
     private Uri currentAnswerUri;
+    public static RequestController requestController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //requestController for the RetrofitApi
+        requestController = RequestController.getInstance(this);
+
         setContentView(R.layout.activity_journal);
 
         //Send saved preferences here
@@ -57,7 +63,6 @@ public class JournalActivity extends AppCompatActivity {
         }
 
         nextQuestionButton();
-
     }
 
     // Make a method to go to the next question depending on which grammar selection the user chose
