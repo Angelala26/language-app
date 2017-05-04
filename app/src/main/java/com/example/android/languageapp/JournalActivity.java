@@ -57,6 +57,7 @@ public class JournalActivity extends AppCompatActivity {
         }
 
         nextQuestionButton();
+
     }
 
     // Make a method to go to the next question depending on which grammar selection the user chose
