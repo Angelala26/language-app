@@ -20,6 +20,11 @@
         </activity>
         <activity android:name=".JournalActivity"></activity>
 
+        <provider
+            android:authorities="com.example.android.languageapp"
+            android:name=".data.JournalProvider"
+            android:exported="false" />
+
     </application>
 
 </manifest>

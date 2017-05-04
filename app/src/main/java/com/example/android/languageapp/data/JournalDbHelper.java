@@ -15,7 +15,7 @@ public class JournalDbHelper extends SQLiteOpenHelper {
 
     final String SQL_CREATE_ANSWERS_TABLE = "CREATE TABLE " + JournalContract.JournalEntry.TABLE_NAME + " (" +
             JournalContract.JournalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            JournalContract.JournalEntry.COLUMN_USER_ANSWER + " TEXT NOT NULL, ";
+            JournalContract.JournalEntry.COLUMN_USER_ANSWER + " TEXT NOT NULL);";
 
     public JournalDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
