@@ -84,44 +84,74 @@ public class JournalActivity extends AppCompatActivity {
                     journalQuestionLabel.setText(presentQuestionArray[counter + 1]);
                     if (counter < (presentQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
-                        counter++;
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader                        counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 2) {
                     journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
                     if (counter < (pastQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 3) {
                     journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
                     if (counter < (futureQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 4) {
                     journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
                     if (counter < (conditionalQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
+                        String userInputToString = userInput.getText().toString();
+                        Log.d("userInput: ", userInputToString);
+                        //TODO: Make this userInputToString connect with the journal database, then
+                        //TODO: connect that with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 }
-                String userInputToString = userInput.getText().toString();
             }
         });
     }
