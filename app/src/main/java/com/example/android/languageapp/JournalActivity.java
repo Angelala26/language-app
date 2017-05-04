@@ -1,14 +1,19 @@
 package com.example.android.languageapp;
 
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android.languageapp.data.JournalContract;
 
 import static com.example.android.languageapp.R.id.journalQuestion;
 
@@ -23,6 +28,7 @@ public class JournalActivity extends AppCompatActivity {
     private int counter = 0;
     protected SharedPreferences preferences;
     private TextView userInput;
+    private Uri currentAnswerUri;
 
 
     @Override
@@ -76,6 +82,10 @@ public class JournalActivity extends AppCompatActivity {
         final String[] futureQuestionArray = res.getStringArray(R.array.future_tense_questions);
         final String[] conditionalQuestionArray = res.getStringArray(R.array.conditional_tense_questions);
 
+        // Create a ContentValues object where column names are the keys,
+        // and pet attributes from the editor are the values.
+        final ContentValues values = new ContentValues();
+
         //TODO: the array is off - had to add a random question at the end that doesn't show up
         // Set up the onClickListener with the questions and next button
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
@@ -84,75 +94,114 @@ public class JournalActivity extends AppCompatActivity {
                     journalQuestionLabel.setText(presentQuestionArray[counter + 1]);
                     if (counter < (presentQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader                        counter++;
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
+                        counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 2) {
                     journalQuestionLabel.setText(pastQuestionArray[counter + 1]);
                     if (counter < (pastQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 3) {
                     journalQuestionLabel.setText(futureQuestionArray[counter + 1]);
                     if (counter < (futureQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 4) {
                     journalQuestionLabel.setText(conditionalQuestionArray[counter + 1]);
                     if (counter < (conditionalQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
-                        String userInputToString = userInput.getText().toString();
-                        Log.d("userInput: ", userInputToString);
-                        //TODO: Make this userInputToString connect with the journal database, then
-                        //TODO: connect that with the API in GrammarLoader
+                        saveAnswer();
+                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 }
             }
         });
+    }
+
+    private void saveAnswer() {
+        // Read from input fields
+        // Use trim to eliminate leading or trailing white space
+        String userInputToString = userInput.getText().toString().trim();
+
+        // Check if this is supposed to be a new entry
+        // and check if all the fields in the editor are blank
+        if (currentAnswerUri == null && TextUtils.isEmpty(userInputToString)) {
+            // Since no fields were modified, we can return early without creating a new entry.
+            // No need to create ContentValues and no need to do any ContentProvider operations.
+            return;
+        }
+
+        // Create a ContentValues object where column names are the keys,
+        // and pet attributes from the editor are the values.
+        ContentValues values = new ContentValues();
+        values.put(JournalContract.JournalEntry.COLUMN_USER_ANSWER, userInputToString);
+
+        // Determine if this is a new or existing entry by checking if mCurrentAnswerUri is null or not
+        if (currentAnswerUri == null) {
+            // This is a NEW pet, so insert a new pet into the provider,
+            // returning the content URI for the new pet.
+            Uri newUri = getContentResolver().insert(JournalContract.JournalEntry.CONTENT_URI, values);
+
+            // Show a toast message depending on whether or not the insertion was successful.
+            if (newUri == null) {
+                // If the new content URI is null, then there was an error with insertion.
+                Toast.makeText(this, "Input failed.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                // Otherwise, the insertion was successful and we can display a toast.
+                Toast.makeText(this, "Input succeeded.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // Otherwise this is an EXISTING entry, so update the entry with content URI: mCurrentAnswerUri
+            // and pass in the new ContentValues. Pass in null for the selection and selection args
+            // because mCurrentAnswerUri will already identify the correct row in the database that
+            // we want to modify.
+            int rowsAffected = getContentResolver().update(currentAnswerUri, values, null, null);
+
+            // Show a toast message depending on whether or not the update was successful.
+            if (rowsAffected == 0) {
+                // If no rows were affected, then there was an error with the update.
+                Toast.makeText(this, "Update failed.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                // Otherwise, the update was successful and we can display a toast.
+                Toast.makeText(this, "Successful update.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
