@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RequestController {
 
 
-    private final static String BASE_URL_CLUB = "https://api.textgears.com/check.php/";
+    private final static String BASE_URL_CLUB = "https://api.textgears.com/";
     private static RequestApiEndpoints apiServiceAsync;
     private static RequestController instance;
     private static final int TIMEOUT_MILLIS = 10000;
@@ -39,5 +39,5 @@ public class RequestController {
         }
         return instance;
     }
-    
+
 }
