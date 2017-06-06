@@ -237,4 +237,20 @@ public class JournalProvider extends ContentProvider {
         // Return the number of rows deleted
         return rowsDeleted;
     }
+
+    //Not sure if I need this method
+    public String getUserInput(int id) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(JournalContract.JournalEntry.TABLE_NAME, new String[]
+                        {JournalContract.JournalEntry.COLUMN_USER_ANSWER
+                        }, JournalContract.JournalEntry._ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String userInput = new String((cursor.getString(0)));
+        // return userInput
+        return userInput;
+    }
 }

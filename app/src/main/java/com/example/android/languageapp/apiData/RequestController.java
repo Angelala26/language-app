@@ -30,7 +30,8 @@ public class RequestController {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        apiServiceAsync = retrofitAsync.create(RequestApiEndpoints.class);
+        RequestApiEndpoints requestApiEndpoints = retrofitAsync.create(RequestApiEndpoints.class);
+
     }
 
     public static RequestController getInstance(Context context) {

@@ -3,6 +3,7 @@ package com.example.android.languageapp;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.android.languageapp.apiData.RequestController;
 import com.example.android.languageapp.data.JournalContract;
+import com.example.android.languageapp.data.JournalDbHelper;
 
 import static com.example.android.languageapp.R.id.journalQuestion;
 
@@ -39,6 +41,17 @@ public class JournalActivity extends AppCompatActivity {
 
         //requestController for the RetrofitApi
         requestController = RequestController.getInstance(this);
+
+        //TODO: connect the requestController with the stored answers in the database
+
+        //get an instance of the database through the helper
+        JournalDbHelper helper = new JournalDbHelper(this);
+        SQLiteDatabase database = helper.getReadableDatabase();
+
+
+
+
+
 
         setContentView(R.layout.activity_journal);
 
@@ -101,13 +114,11 @@ public class JournalActivity extends AppCompatActivity {
                     if (counter < (presentQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 2) {
@@ -115,13 +126,11 @@ public class JournalActivity extends AppCompatActivity {
                     if (counter < (pastQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 3) {
@@ -129,13 +138,11 @@ public class JournalActivity extends AppCompatActivity {
                     if (counter < (futureQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 } else if (selection == 4) {
@@ -143,13 +150,11 @@ public class JournalActivity extends AppCompatActivity {
                     if (counter < (conditionalQuestionArray.length - 2)) {
                         Log.d("inside if counter", "counter is: " + counter);
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         counter++;
                         userInput.setText("");
                     } else {
                         journalQuestionLabel.setText("Sorry, no more questions.");
                         saveAnswer();
-                        //TODO: Connect userInputToString with the API in GrammarLoader
                         userInput.setVisibility(View.INVISIBLE);
                     }
                 }
@@ -210,5 +215,7 @@ public class JournalActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 }
