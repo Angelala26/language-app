@@ -1,16 +1,18 @@
 package com.example.android.languageapp.apiData;
 
+import java.util.List;
+
 /**
  * Created by Angela on 5/4/17.
  */
 
 public class Error {
 
-    String id;
-    int offset;
-    int length;
-    String bad;
-    String[] better;
+    private String id;
+    private int offset;
+    private int length;
+    private String bad;
+    private List<String> better;
 
     public String getId() {
         return id;
@@ -28,9 +30,8 @@ public class Error {
         return bad;
     }
 
-    public String[] getBetter() {
+    public List<String> getBetter() {
         return better;
     }
-
 }
 
