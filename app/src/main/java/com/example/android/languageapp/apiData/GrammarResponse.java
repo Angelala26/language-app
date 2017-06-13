@@ -1,9 +1,5 @@
 package com.example.android.languageapp.apiData;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,15 +7,20 @@ import java.util.List;
  */
 
 public class GrammarResponse {
-    List<Error> errors;
 
-    public GrammarResponse() {
-        errors = new ArrayList<Error>();
+    private boolean result;
+    private List<Error> errors;
+    private int score;
+
+    public boolean isResult() {
+        return result;
     }
 
-    public static GrammarResponse parseJSON(String response) {
-        Gson gson = new GsonBuilder().create();
-        GrammarResponse grammarMovieResponse = gson.fromJson(response, GrammarResponse.class);
-        return grammarMovieResponse;
+    public List<Error> getErrors() {
+        return errors;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
