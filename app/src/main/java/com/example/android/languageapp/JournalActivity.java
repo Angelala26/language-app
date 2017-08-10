@@ -14,9 +14,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.languageapp.apiData.Error;
+import com.example.android.languageapp.apiData.GrammarResponse;
 import com.example.android.languageapp.apiData.RequestController;
 import com.example.android.languageapp.data.JournalContract;
 import com.example.android.languageapp.data.JournalDbHelper;
+
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.android.languageapp.R.id.journalQuestion;
 
@@ -32,7 +40,7 @@ public class JournalActivity extends AppCompatActivity {
     protected SharedPreferences preferences;
     private TextView userInput;
     private Uri currentAnswerUri;
-    public static RequestController requestController;
+    public RequestController requestController;
 
 
     @Override
@@ -49,7 +57,21 @@ public class JournalActivity extends AppCompatActivity {
         SQLiteDatabase database = helper.getReadableDatabase();
 
 
+        requestController.fetchGrammarCheck("This am a gooder test", new Callback<GrammarResponse>() {
+            @Override
+            public void onResponse(Call<GrammarResponse> call, Response<GrammarResponse> response) {
+                GrammarResponse grammarResponse = response.body();
+                for (Error error : grammarResponse.getErrors()) {
+                    Log.v("Grammar Error", "Bad: " + error.getBad() + ", Better: " + error.getBetter());
+                }
+                Log.v("Grammer Error", "Total score: " + grammarResponse.getScore());
+            }
 
+            @Override
+            public void onFailure(Call<GrammarResponse> call, Throwable t) {
+                Log.v("Grammer Error Failure", t.getLocalizedMessage());
+            }
+        });
 
 
 

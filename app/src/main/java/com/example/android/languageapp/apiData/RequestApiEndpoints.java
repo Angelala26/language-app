@@ -11,7 +11,5 @@ import retrofit2.http.Query;
 public interface RequestApiEndpoints {
 
     @GET("check.php")
-    Call<GrammarResponse> performCheck(@Query("text") String text,
-                                       @Query("key") int eg03DHPdWCEj0YSA);
-
+    Call<GrammarResponse> performCheck(@Query("text") String text);
 }
