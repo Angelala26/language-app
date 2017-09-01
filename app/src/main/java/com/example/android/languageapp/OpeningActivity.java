@@ -32,20 +32,17 @@ public class OpeningActivity extends AppCompatActivity {
 
         setupSpinner();
 
-        //Set up the intent and OnClickListener for the button to go to journal or exercises
+        //Set up the intent and OnClickListener for the button to go to journal
         final Button chooseGrammarButton = (Button) findViewById(R.id.goButton);
         final Button journalButton = (Button) findViewById(R.id.journal);
-        final Button exercisesButton = (Button) findViewById(R.id.exercises);
 
         // make the Go button disappear and the exercises or grammar button appear
         chooseGrammarButton.setVisibility(View.VISIBLE);
         journalButton.setVisibility(View.GONE);
-        exercisesButton.setVisibility(View.GONE);
         chooseGrammarButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 chooseGrammarButton.setVisibility(View.INVISIBLE);
                 journalButton.setVisibility(View.VISIBLE);
-                exercisesButton.setVisibility(View.VISIBLE);
             }
         });
 
