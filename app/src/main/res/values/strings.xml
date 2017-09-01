@@ -52,4 +52,7 @@
     <string name="question_two_conditional">Conditional question 2</string>
 
     <string name="question_three_conditional">Conditional question 3</string>
+
+    <string name="empty_answer">Please answer the question</string>
+
 </resources>

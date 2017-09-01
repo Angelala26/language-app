@@ -1,9 +1,9 @@
 package com.example.android.languageapp;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +18,7 @@ import com.example.android.languageapp.apiData.Error;
 import com.example.android.languageapp.apiData.GrammarResponse;
 import com.example.android.languageapp.apiData.RequestController;
 import com.example.android.languageapp.data.JournalContract;
-import com.example.android.languageapp.data.JournalDbHelper;
-
-import java.util.Map;
+import com.example.android.languageapp.data.JournalProvider;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +41,7 @@ public class JournalActivity extends AppCompatActivity {
     public RequestController requestController;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,29 +49,36 @@ public class JournalActivity extends AppCompatActivity {
         //requestController for the RetrofitApi
         requestController = RequestController.getInstance(this);
 
-        //TODO: connect the requestController with the stored answers in the database
+        
+        Intent intent = getIntent();
+        currentAnswerUri = intent.getData();
 
-        //get an instance of the database through the helper
-        JournalDbHelper helper = new JournalDbHelper(this);
-        SQLiteDatabase database = helper.getReadableDatabase();
+        if (currentAnswerUri == null) {
+            // This is an empty answer, so change the app bar to say "Please enter an answer"
+            setTitle(getString(R.string.empty_answer));
 
+        } else {
 
-        requestController.fetchGrammarCheck("This am a gooder test", new Callback<GrammarResponse>() {
-            @Override
-            public void onResponse(Call<GrammarResponse> call, Response<GrammarResponse> response) {
-                GrammarResponse grammarResponse = response.body();
-                for (Error error : grammarResponse.getErrors()) {
-                    Log.v("Grammar Error", "Bad: " + error.getBad() + ", Better: " + error.getBetter());
+            //connect to the journal provider to get the string of a userInput
+            JournalProvider journalProvider = new JournalProvider();
+            String userInput = journalProvider.getUserInput(counter);
+
+            requestController.fetchGrammarCheck(userInput, new Callback<GrammarResponse>() {
+                @Override
+                public void onResponse(Call<GrammarResponse> call, Response<GrammarResponse> response) {
+                    GrammarResponse grammarResponse = response.body();
+                    for (Error error : grammarResponse.getErrors()) {
+                        Log.v("Grammar Error", "Bad: " + error.getBad() + ", Better: " + error.getBetter());
+                    }
+                    Log.v("Grammer Error", "Total score: " + grammarResponse.getScore());
                 }
-                Log.v("Grammer Error", "Total score: " + grammarResponse.getScore());
-            }
 
-            @Override
-            public void onFailure(Call<GrammarResponse> call, Throwable t) {
-                Log.v("Grammer Error Failure", t.getLocalizedMessage());
-            }
-        });
-
+                @Override
+                public void onFailure(Call<GrammarResponse> call, Throwable t) {
+                    Log.v("Grammer Error Failure", t.getLocalizedMessage());
+                }
+            });
+    }
 
 
         setContentView(R.layout.activity_journal);
